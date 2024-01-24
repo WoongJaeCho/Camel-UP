@@ -4,7 +4,6 @@ import Player from './Player.js';
 
 class main {
   constructor() {
-    this.$boxes = document.querySelectorAll('.box');
     this.$btn = document.querySelector('button');
     this.canvas = document.querySelector('#canvas');
     this.colorList = ['blue', 'green', 'red', 'yellow', 'white'];
@@ -15,14 +14,14 @@ class main {
     this.dot = null;
     this.count = null;
     this.isbutton = true;
-
+    
     this.$btn.addEventListener('click', () => {
       if (this.isbutton) {
         this.diceOn();
       }
     })
   }
-
+  
   diceOn() {
     this.isbutton = false;
     this.canvas.classList.remove('on');
@@ -31,44 +30,69 @@ class main {
       this.isbutton = true;
     }, 2000);
     this.dice.throwDice();
-
+    
     this.colorIdx = this.dice.rdColor;
     this.dot = this.dice.rdDot;
+    this.color = this.colorList[this.colorIdx];
     console.log('color =', this.colorList[this.colorIdx]);
     console.log('dot =', this.dot);
-    this.moveAndroid(this.color, this.dot);
-    this.boxCalc();
+    this.removeClass();
+    this.moveAndroid(this.colorIdx, this.dot, this.color);
+    this.addClass();
   }
-
-  moveAndroid(color, dot) {
-    let boxNum = this.android.getPosition(this.colorIdx);
-    console.log('getPosition = ', boxNum);
-
-
-    // console.log(this.android.getColor());
-    this.android.setPosition(this.colorIdx, this.dot);
-  }
-  boxCalc() {
-    // for (let i = 0; i < 25; i += 1) {
-    //   console.log(i);
-    //   console.log(this.$boxes[i].innerHTML);
-    //   // let str = this.$boxes[i].innerHTML;
-    //   // if (str.contain("android")) {
-    //   //   this.count++;
-    //   // }
-    //   // this.count = 0;
-    // }
-
-    this.$boxes.forEach(box => {
-      console.log(box);
-      if (box.classList.contains('fa')) {
-        this.count++;
+  
+  moveAndroid(colorIdx, dot, color) {
+    let iconList = [];
+    let icon = null;
+    let getPosition = this.android.getPosition(colorIdx);
+    let setPosition = this.android.setPosition(colorIdx, dot);
+    
+    this.$boxes.filter(box => {
+      if(box.getAttribute('data-id') == getPosition){
+        console.log(box);
+        iconList = [...box.children];
+        // console.log(iconList.getAttribute('data-color'));
       }
-      console.log(this.count);
-    });
+    })  
+    // console.log(iconList);
+    // iconIdx = iconList.filter(i=>i.getAttribute('data-color')==color);
+    // console.log(iconIdx);
 
+    this.$boxes.filter(box => {
+      if(box.getAttribute('data-id') == setPosition){
+
+        console.log(box);
+        console.log(box.getAttribute('data-id'));
+
+        // box.appendChild(icon);
+      }
+    })
+
+  }
+
+  removeClass() {
+    this.$boxes = [...document.querySelectorAll('.box')];
+    for (let i = 0; i < 25; i += 1) {
+      let cnt = this.$boxes[i].children.length;
+      if(cnt == 1) this.$boxes[i].classList.remove('one');
+      else if(cnt == 2) this.$boxes[i].classList.remove('two');
+      else if(cnt == 3) this.$boxes[i].classList.remove('three');
+      else if(cnt == 4) this.$boxes[i].classList.remove('four');
+      else if(cnt == 5) this.$boxes[i].classList.remove('five');
+    }
+  }
+  
+  addClass(){
+    this.$boxes = [...document.querySelectorAll('.box')];
+    for (let i = 0; i < 25; i += 1) {
+      let cnt = this.$boxes[i].children.length;
+      if(cnt == 1) this.$boxes[i].classList.add('one');
+      else if(cnt == 2) this.$boxes[i].classList.add('two');
+      else if(cnt == 3) this.$boxes[i].classList.add('three');
+      else if(cnt == 4) this.$boxes[i].classList.add('four');
+      else if(cnt == 5) this.$boxes[i].classList.add('five');
+    }
   }
 }
-
 
 new main();

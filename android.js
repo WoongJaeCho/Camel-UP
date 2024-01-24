@@ -28,6 +28,7 @@ export default class Android {
   }
   setPosition(colorIdx, pos) {
     this.colorArr[colorIdx].position += pos;
-    console.log('setPosition =', this.colorArr[colorIdx].position);
+    console.log('setposition =',this.colorArr[colorIdx].position);
+    return this.colorArr[colorIdx].position;
   }
 }

@@ -21,24 +21,13 @@ export default class Android {
         position: 2
       }
     ]
-
-    // this.blue = {
-    //     position: 1,
-    //   },
-    //   this.green = {
-    //     position: 1,
-    //   },
-    //   this.red = {
-    //     position: 2,
-    //   },
-    //   this.yellow = {
-    //     position: 1,
-    //   },
-    //   this.white = {
-    //     position: 2,
-    //   }
   }
-  getPosition(colorNum) {
-    return this.colorArr[colorNum].position;
+
+  getPosition(colorIdx) {
+    return this.colorArr[colorIdx].position;
+  }
+  setPosition(colorIdx, pos) {
+    this.colorArr[colorIdx].position += pos;
+    console.log('setPosition =', this.colorArr[colorIdx].position);
   }
 }

@@ -1,0 +1,189 @@
+ /* Fontawesome 4.7 */
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:300,400,500,700,700&display=swap');
+
+body{
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(./IMG/background.jpg);
+  background-size: cover;
+}
+.container{
+
+}
+header{
+  background-color: #fff;
+  height: 30px;
+  font-size: 2em;
+  text-align: center;
+  line-height: 30px;
+}
+main{
+  /* border: 1px solid blue; */
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+.map{
+  display: flex;
+  flex-wrap: wrap;
+  width:800px;
+  position: relative;
+}
+.box{
+  border: 1px solid rgb(158, 111, 9);
+  width: 20%;
+  height: 160px;
+  background-color: rgba(150, 110, 25, 0.4);
+  font-size: 1.5em;
+  font-weight: 1.5em;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.box.one i{
+  flex: 1;
+  margin: 0 auto;
+  font-size: 3em;
+}
+.box.two i{
+  flex: 1;
+  margin: 0 auto;
+  font-size: 2.5em;
+}
+.box.three i{
+  flex: 1;
+  margin: 0 auto;
+  font-size: 1.6em;
+}
+.box.four i{
+  margin: 0 auto;
+  font-size: 1.2em;
+}
+.box.five i{
+  margin: 0 auto;
+  font-size: 1em;
+}
+.box.hidden{
+  opacity: 0;
+}
+.cards{
+  display: flex;
+  /* flex-direction: column; */
+  position: absolute;
+  top: 180px;
+  left: 170px;
+}
+.card{
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  width: 80px;
+  height: 120px;
+  margin: 0 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  /* justify-content: space-evenly; */
+  z-index: 1;
+}
+.card i{
+  flex: 1;
+  font-size: 3em;
+  text-align: center;
+}
+.yellow{
+  color: yellow;
+}
+.green{
+  color: green;
+}
+.blue{
+  color: blue;
+}
+.red{
+  color: red;
+}
+.white{
+  color: white;
+}
+.card p{
+  flex: 1;
+  font-size: 2em;
+  text-align: center;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.card:hover{
+  background-color: lightgray;
+}
+button{
+  position: absolute;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 2em;
+  top: 560px;
+  left: 480px;
+  z-index: 1;
+}
+button:hover{
+  background-color: pink;
+}
+#canvas{
+  position: absolute;
+  left: 150px;
+  top: 170px;
+  /* border: 1px solid red; */
+  /* background-color: rgba(200, 100, 10, 0.8); */
+  opacity: 1;
+}
+#canvas.on{
+  opacity: 0;
+}
+
+.players{
+  /* border: 1px solid red; */
+  top: 30px;
+  height: 800px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.player{
+  flex: 1;
+  width: 100%;
+  /* border: 1px solid yellow; */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.player .info{
+  /* border: 1px solid green; */
+  display: flex;
+  flex: 1;
+}
+.face img{
+  width: 100px;
+  border-radius: 50%;
+  margin: 15px;
+}
+.coin{
+  display: flex;
+  flex-direction: column;
+}
+.coin img{
+  width: 50px;
+  margin-top: 20px;
+}
+.coin p{
+  font-size: 1.5em;
+  margin: 0;
+  margin-left: 20px;
+}
+.items{
+  /* border: 1px solid blue; */
+  flex: 2;
+}

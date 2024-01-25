@@ -6,6 +6,7 @@ class main {
   constructor() {
     this.$btn = document.querySelector('button');
     this.canvas = document.querySelector('#canvas');
+    this.$player = [...document.querySelectorAll('.player')];
     this.colorList = ['blue', 'green', 'red', 'yellow', 'white'];
     this.dice = new Dice();
     this.android = new Android();
@@ -15,12 +16,14 @@ class main {
     this.count = null;
     this.isbutton = true;
     this.iswinner = false;
-    this.turn = null;
+    this.turn = this.$player[0];
     this.$btn.addEventListener('click', () => {
       if (this.isbutton) {
         this.diceOn();
       }
     })
+    this.cardDrag(this.turn);
+    console.log(this.turn);
   }
 
 
@@ -106,14 +109,30 @@ class main {
 
   changeTurn() {
     // let pList = ['p1', 'p2', 'p3', 'p4'];
-    const $player = [...document.querySelectorAll('.player')];
-    let idx = $player.findIndex(p => p.classList.contains('on'));
-    $player[idx++].classList.remove('on');
+    let idx = this.$player.findIndex(p => p.classList.contains('on'));
+    this.$player[idx++].classList.remove('on');
     if (idx == 4) idx = 0;
-    $player[idx].classList.add('on');
+    this.turn = this.$player[idx];
+    this.$player[idx].classList.add('on');
   }
 
+  cardDrag(turn) {
+    let cards = document.querySelector('.cards');
+    console.log(cards);
+    cards.addEventListener('dragstart', e => {
+      console.log(e);
+      e.target.classList.add('drag');
+    })
+    cards.addEventListener('dragend', e => {
+      e.target.classList.remove('drag');
+    })
 
+    console.log(turn);
+    turn.addEventListener('dragover', e => {
+      e.
+    })
+
+  }
 
   removeClass() {
     this.$boxes = [...document.querySelectorAll('.box')];

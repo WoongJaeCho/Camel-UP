@@ -37,34 +37,82 @@ main{
   width: 20%;
   height: 160px;
   background-color: rgba(150, 110, 25, 0.4);
+  /* background-image: url(./IMG/number.jpg); */
+  /* background-size: cover; */
   font-size: 1.5em;
   font-weight: 1.5em;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  position: relative;
+}
+.box span{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+}
+/* @for $i from 1 through 16{
+  .box[data-id="${i}"]::before{
+    content : "i";
+  }
+} */
+/* .box[data-id="1"]::before{content : "1";}
+.box[data-id="2"]::before{content : "2";}
+.box[data-id="3"]::before{content : "3";}
+.box[data-id="4"]::before{content : "4";}
+.box[data-id="5"]::before{content : "5";}
+.box[data-id="6"]::before{content : "6";}
+.box[data-id="7"]::before{content : "7";}
+.box[data-id="8"]::before{content : "8";}
+.box[data-id="9"]::before{content : "9";}
+.box[data-id="10"]::before{content : "10";}
+.box[data-id="11"]::before{content : "11";}
+.box[data-id="12"]::before{content : "12";}
+.box[data-id="13"]::before{content : "13";}
+.box[data-id="14"]::before{content : "14";}
+.box[data-id="15"]::before{content : "15";}
+.box[data-id="16"]::before{content : "16";} */
+
+.box.two{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.box.three{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.box.four{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.box.five{
+  display: flex;
+  flex-direction: column-reverse;
 }
 .box.one i{
-  flex: 1;
-  margin: 0 auto;
+  /* flex: 1; */
+  margin: auto auto 0 auto;
   font-size: 3em;
 }
 .box.two i{
   flex: 1;
+  /* border: 1px solid; */
   margin: 0 auto;
-  font-size: 2.5em;
+  font-size: 3em;
 }
 .box.three i{
   flex: 1;
   margin: 0 auto;
-  font-size: 1.6em;
+  font-size: 2em;
 }
 .box.four i{
   margin: 0 auto;
-  font-size: 1.2em;
+  font-size: 1.6em;
 }
 .box.five i{
   margin: 0 auto;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 .box.hidden{
   opacity: 0;

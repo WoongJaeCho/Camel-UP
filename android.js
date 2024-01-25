@@ -6,7 +6,7 @@ export default class Android {
       },
       {
         color: 'green',
-        position: 1
+        position: 3
       },
       {
         color: 'red',
@@ -14,11 +14,11 @@ export default class Android {
       },
       {
         color: 'yellow',
-        position: 1
+        position: 2
       },
       {
         color: 'white',
-        position: 2
+        position: 1
       }
     ]
   }
@@ -27,8 +27,9 @@ export default class Android {
     return this.colorArr[colorIdx].position;
   }
   setPosition(colorIdx, pos) {
-    this.colorArr[colorIdx].position += pos;
-    console.log('setposition =',this.colorArr[colorIdx].position);
-    return this.colorArr[colorIdx].position;
+    let position = this.colorArr[colorIdx].position += pos;
+    if (position >= 16) position = 16;
+    console.log('setposition =', position);
+    return position;
   }
 }

@@ -21,36 +21,37 @@ export default class Dice {
     this.init();
     this.idx = 0;
   }
-  init(){
+  init() {
     this.diceNum = [];
     for (let i = 0; i < 5; i += 1) {
       this.rdNum = parseInt(Math.random() * 5);
-      console.log(this.rdNum);
-      if(this.diceNum.length == 0){
+      // console.log(this.rdNum);
+      if (this.diceNum.length == 0) {
         this.diceNum.push(this.rdNum);
       } else if (!this.sameNum(this.rdNum)) {
         this.diceNum.push(this.rdNum);
-      }else{
-        i-=1;
+      } else {
+        i -= 1;
       }
-      console.log(this.diceNum);
+      // console.log(this.diceNum);
     }
   }
-  sameNum(rdNum){
-    return this.diceNum.some(n=>n==rdNum);
+  sameNum(rdNum) {
+    return this.diceNum.some(n => n == rdNum);
   }
 
   throwDice() {
     console.log(this.diceNum);
     this.rdDot = parseInt(Math.random() * 3) + 1;
-    this.rdColor = this.diceNum[this.idx]; 
+    // this.rdDot = parseInt(Math.random()) + 1;
+    this.rdColor = this.diceNum[this.idx];
     this.draw(this.rdColor);
     this.drawDot(this.rdDot);
-    this.idx+=1;
-    if(this.idx == 5){
+    this.idx += 1;
+    if (this.idx == 5) {
       this.init();
-      this.idx=0;
-    } 
+      this.idx = 0;
+    }
   }
 
 

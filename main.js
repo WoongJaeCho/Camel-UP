@@ -15,7 +15,7 @@ class main {
     this.count = null;
     this.isbutton = true;
     this.iswinner = false;
-    this.addClass();
+    this.turn = null;
     this.$btn.addEventListener('click', () => {
       if (this.isbutton) {
         this.diceOn();
@@ -41,9 +41,12 @@ class main {
     this.removeClass();
     this.moveAndroid(this.colorIdx, this.dot, this.color);
     this.addClass();
+    this.changeTurn();
     if (this.iswinner) {
-      alert("게임 종료");
       this.isbutton = false;
+      setTimeout(() => {
+        alert("게임 종료");
+      }, 1000);
     }
   }
 
@@ -82,9 +85,6 @@ class main {
         icon = box.querySelector(`i[data-color ="${this.color}"]`);
         iconArr = [...box.querySelectorAll('i')];
         iconIdx = iconArr.findIndex(i => i == icon);
-        console.log('test = ' + iconArr.findIndex(i => i == icon));
-        console.log('icon = ', icon);
-        console.log('iconArr = ', iconArr);
       }
     })
     this.$boxes.filter(box => {
@@ -97,13 +97,23 @@ class main {
   moveChild(box, iconIdx, iconArr, setPosition) {
     for (let i = iconIdx; i < iconArr.length; i += 1) {
       let icon = iconArr[i];
-      console.log(icon);
       let color = icon.getAttribute('data-color');
       let colorIdx = this.colorList.findIndex(idx => idx == color);
       this.android.colorArr[colorIdx].position = setPosition;
       box.appendChild(icon);
     }
   }
+
+  changeTurn() {
+    // let pList = ['p1', 'p2', 'p3', 'p4'];
+    const $player = [...document.querySelectorAll('.player')];
+    let idx = $player.findIndex(p => p.classList.contains('on'));
+    $player[idx++].classList.remove('on');
+    if (idx == 4) idx = 0;
+    $player[idx].classList.add('on');
+  }
+
+
 
   removeClass() {
     this.$boxes = [...document.querySelectorAll('.box')];

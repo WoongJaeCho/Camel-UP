@@ -211,10 +211,25 @@ button:hover{
 .player{
   flex: 1;
   width: 100%;
-  /* border: 1px solid yellow; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+.player.on{
+  border-radius: 20px;
+  animation: twinkling 1500ms infinite;
+}
+@keyframes twinkling{
+  0%{
+    border: 2px solid blue;
+  }
+  50%{
+    border: 1px solid transparent;
+  }
+  100%{
+    border: 2px solid blue;
+  }
 }
 .player .info{
   /* border: 1px solid green; */

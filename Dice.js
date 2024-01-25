@@ -54,7 +54,6 @@ export default class Dice {
     }
   }
 
-
   draw(idx) {
     this.ctx.lineJoin = 'round';
     this.ctx.lineWidth = this.dice.cornerRadius;

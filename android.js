@@ -2,23 +2,23 @@ export default class Android {
   constructor() {
     this.colorArr = [{
         color: 'blue',
-        position: 1
+        position: 0
       },
       {
         color: 'green',
-        position: 3
+        position: 0
       },
       {
         color: 'red',
-        position: 2
+        position: 0
       },
       {
         color: 'yellow',
-        position: 2
+        position: 0
       },
       {
         color: 'white',
-        position: 1
+        position: 0
       }
     ]
   }

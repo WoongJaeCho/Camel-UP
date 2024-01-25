@@ -15,6 +15,7 @@ class main {
     this.count = null;
     this.isbutton = true;
     this.iswinner = false;
+    this.addClass();
     this.$btn.addEventListener('click', () => {
       if (this.isbutton) {
         this.diceOn();
@@ -47,7 +48,6 @@ class main {
   }
 
   moveAndroid(colorIdx, dot) {
-    let iconList = [];
     let getPosition = this.android.getPosition(colorIdx);
     let setPosition = this.android.setPosition(colorIdx, dot);
     if (setPosition == 16) {
@@ -58,7 +58,8 @@ class main {
       this.firstmove(colorIdx, dot);
       return;
     } else {
-      this.nextMove(colorIdx, dot, getPosition, setPosition)
+      this.nextMove(getPosition, setPosition)
+      return;
     }
   }
 
@@ -67,37 +68,41 @@ class main {
       if (box.getAttribute('data-id') == dot) {
         box.innerHTML +=
           `<i class="fa fa-android" data-color="${this.colorList[colorIdx]}"></i>`
-        this.android.setPosition(colorIdx, dot)
       }
     })
   }
 
-  nextMove(colorIdx, dot, getPosition, setPosition) {
+  nextMove(getPosition, setPosition) {
     let icon = null;
+    let iconIdx = null;
+    let iconArr = [];
+
     this.$boxes.filter(box => {
       if (box.getAttribute('data-id') == getPosition) {
         icon = box.querySelector(`i[data-color ="${this.color}"]`);
+        iconArr = [...box.querySelectorAll('i')];
+        iconIdx = iconArr.findIndex(i => i == icon);
+        console.log('test = ' + iconArr.findIndex(i => i == icon));
         console.log('icon = ', icon);
-        console.log(box);
-        let iconArr = [...box.children];
-        console.log(iconArr);
-        // iconList = box.children;
-        // console.log(iconList.getAttribute('data-color'));
+        console.log('iconArr = ', iconArr);
       }
     })
-    // console.log(iconList);
-    // iconIdx = iconList.filter(i=>i.getAttribute('data-color')==color);
-    // console.log(iconIdx);
-
     this.$boxes.filter(box => {
       if (box.getAttribute('data-id') == setPosition) {
-
-        console.log(box);
-        console.log(box.getAttribute('data-id'));
-
-        box.appendChild(icon);
+        this.moveChild(box, iconIdx, iconArr, setPosition)
       }
     })
+  }
+
+  moveChild(box, iconIdx, iconArr, setPosition) {
+    for (let i = iconIdx; i < iconArr.length; i += 1) {
+      let icon = iconArr[i];
+      console.log(icon);
+      let color = icon.getAttribute('data-color');
+      let colorIdx = this.colorList.findIndex(idx => idx == color);
+      this.android.colorArr[colorIdx].position = setPosition;
+      box.appendChild(icon);
+    }
   }
 
   removeClass() {

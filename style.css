@@ -132,12 +132,19 @@ main{
   margin: 0 5px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: gray;
   /* justify-content: space-evenly; */
   z-index: 1;
 }
 .card i{
   flex: 1;
+  font-size: 3em;
+  text-align: center;
+}
+.card img{
+  flex: 1;
+  border: 1px solid blue;
   font-size: 3em;
   text-align: center;
 }
@@ -160,6 +167,7 @@ i[data-color="white"]{
   flex: 1;
   font-size: 2em;
   text-align: center;
+  margin: 0;
   /* justify-content: center; */
   /* align-items: center; */
 }

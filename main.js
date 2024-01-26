@@ -31,6 +31,7 @@ class main {
       }
     })
     console.log('turn = ', this.turn);
+    this.calCoin();
   }
   // init(){}
 
@@ -40,7 +41,8 @@ class main {
     setTimeout(() => {
       this.canvas.classList.add('on');
       this.isbutton = true;
-    }, 2000);
+    }, 20);
+    // }, 2000);
     this.dice.throwDice();
 
     this.colorIdx = this.dice.rdColor;
@@ -187,15 +189,75 @@ class main {
       else if (cnt == 5) this.$boxes[i].classList.add('five');
     }
   }
+
   setround() {
     this.android.clearPoint();
     this.items = [...document.querySelectorAll('.items')];
     let pTag = [...document.querySelectorAll('p')];
+    this.endRound();
+    this.calCoin();
+    // this.setCard(pTag);
+  }
+
+  setCard(pTag) {
     this.items.forEach(e => e.innerHTML = '');
     pTag.forEach(e => {
       e.innerHTML = '5'
       e.parentNode.setAttribute('draggable', 'true');
     });
+  }
+
+  endRound() {
+    let firstBox = this.android.getFirst();
+    let box = this.$boxes.find(box => box.getAttribute('data-id') == firstBox);
+    // box는 1등 말이 있는 position의 박스 2등 3등... 있을 수 있다.
+    let firstColor = box.lastChild.getAttribute('data-color');
+    let firstBoxSize = [...box.children].length;
+    //firstColor는 1등 말의 색깔
+    let idx = 0;
+    this.items.forEach(item => {
+      let playerIdx = item.parentNode.getAttribute('data-name');
+
+      let itemList = [...item.children];
+      let minusPoint = itemList.length;
+      this.player.calculateCoin(playerIdx, minusPoint * -1);
+
+      itemList.forEach(card => {
+        // 각각의 플레이어 .items에서 자식 요소의 data-color 가 firstColor와 일치하는 카드
+        if (card.getAttribute('data-color') == firstColor) {
+          let pTag = card.querySelector('p');
+          // 카드의 PTag의 값을 coin+1을 코인에 더한다.
+          let point = pTag.innerHTML * 1 + 1;
+          this.player.calculateCoin(playerIdx, point);
+        }
+        console.log(firstBoxSize);
+        if (firstBoxSize > 2) {
+          let second = [...box.childNodes];
+          let secondColor = second[firstBoxSize - 2].getAttribute('data-color');
+          if (card.getAttribute('data-color') == secondColor) {
+            this.player.calculateCoin(playerIdx, 2);
+          }
+        } else {
+          let secondBox = this.android.secondAndroid(firstBox);
+          console.log('1', secondBox);
+          let box = this.$boxes.find(box => box.getAttribute('data-id') == secondBox);
+          console.log('2', box);
+          let secondColor = box.lastChild.getAttribute('data-color');
+          console.log('3', secondBox);
+          if (card.getAttribute('data-color') == secondColor) {
+            this.player.calculateCoin(playerIdx, 2);
+          }
+        }
+      })
+    })
+  }
+  calCoin() {
+    this.$player.forEach(player => {
+      let playerIdx = player.getAttribute('data-name');
+      let coin = this.player.getCoin(playerIdx);
+      let span = player.querySelector('span');
+      span.innerHTML = coin;
+    })
   }
 
 }

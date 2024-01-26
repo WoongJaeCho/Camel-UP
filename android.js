@@ -44,7 +44,6 @@ export default class Android {
         if (Arr.point == 5) Arr.point = 3;
         else if (Arr.point == 3) Arr.point = 2;
         else if (Arr.point == 2) Arr.point = 0;
-        else if (Arr.point == 0) Arr.point = -1;
         return Arr;
       }
     })
@@ -53,5 +52,24 @@ export default class Android {
 
   clearPoint() {
     this.colorArr.forEach(e => e.point = 5);
+  }
+
+  getFirst() {
+    let maxPos = 0;
+    let pos = this.colorArr.forEach(Arr => {
+      if (Arr.position > maxPos) {
+        maxPos = Arr.position;
+      }
+    })
+    return maxPos;
+  }
+  secondAndroid(maxPos) {
+    let secondPos = 0;
+    let pos = this.colorArr.forEach(Arr => {
+      if (Arr.position == maxPos) {} else if (Arr.position > secondPos) {
+        secondPos = Arr.position;
+      }
+    })
+    return secondPos;
   }
 }

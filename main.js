@@ -50,6 +50,7 @@ class main {
     this.color = this.colorList[this.colorIdx];
     console.log('color =', this.colorList[this.colorIdx]);
     console.log('dot =', this.dot);
+    this.diceCoin();
     this.removeClass();
     this.moveAndroid(this.colorIdx, this.dot, this.color);
     this.addClass();
@@ -62,6 +63,11 @@ class main {
     }
   }
 
+  diceCoin() {
+    let items = this.turn.querySelector('.items');
+    items.innerHTML +=
+      `<div class="card" data-color="coin"><img src="./IMG/coin.png" alt="coin"><p>1</p></div>`
+  }
   moveAndroid(colorIdx, dot) {
     let getPosition = this.android.getPosition(colorIdx);
     let setPosition = this.android.setPosition(colorIdx, dot);
@@ -248,9 +254,13 @@ class main {
             this.player.calculateCoin(playerIdx, 2);
           }
         }
+        if (card.getAttribute('data-color') == 'coin') {
+          this.player.calculateCoin(playerIdx, 2);
+        }
       })
     })
   }
+
   calCoin() {
     this.$player.forEach(player => {
       let playerIdx = player.getAttribute('data-name');

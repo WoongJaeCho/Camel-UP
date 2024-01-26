@@ -144,8 +144,10 @@ main{
 }
 .card img{
   flex: 1;
-  border: 1px solid blue;
-  font-size: 3em;
+  width: 50px;
+  margin: auto;
+  /* border: 1px solid blue; */
+  font-size: 2em;
   text-align: center;
 }
 i[data-color="yellow"]{

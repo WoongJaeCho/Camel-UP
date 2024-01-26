@@ -33,7 +33,7 @@ main{
   position: relative;
 }
 .box{
-  border: 1px solid rgb(158, 111, 9);
+  border: 1px solid rgb(221, 153, 5);
   width: 20%;
   height: 160px;
   background-color: rgba(150, 110, 25, 0.4);
@@ -198,7 +198,7 @@ button:hover{
   opacity: 1;
 }
 #canvas.on{
-  opacity: 0;
+  opacity: 1;
 }
 
 .players{
@@ -225,13 +225,15 @@ button:hover{
 }
 @keyframes twinkling{
   0%{
-    border: 2px solid blue;
+    border: 3px solid blue;
+    box-sizing: border-box;
   }
   50%{
-    border: 1px solid transparent;
+    border: 3px solid transparent;
   }
   100%{
-    border: 2px solid blue;
+    border: 3px solid blue;
+    box-sizing: border-box;
   }
 }
 .player .info{

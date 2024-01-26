@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>3D Dice Animation</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .scene {
+      perspective: 600px;
+    }
+
+    .dice {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .side {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      background-color: lightgray;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      transform-origin: center center;
+      backface-visibility: hidden;
+    }
+
+    #side1 {
+      transform: rotateX(90deg) translateZ(50px);
+    }
+
+    #side2 {
+      transform: rotateX(-90deg) translateZ(50px);
+    }
+
+    #side3 {
+      transform: rotateY(180deg) translateZ(50px);
+    }
+
+    #side4 {
+      transform: rotateY(0deg) translateZ(50px);
+    }
+
+    #side5 {
+      transform: rotateY(-90deg) translateZ(50px);
+    }
+
+    #side6 {
+      transform: rotateY(90deg) translateZ(50px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scene">
+    <div class="dice" id="dice">
+      <div class="side" id="side1"></div>
+      <div class="side" id="side2"></div>
+      <div class="side" id="side3"></div>
+      <div class="side" id="side4"></div>
+      <div class="side" id="side5"></div>
+      <div class="side" id="side6"></div>
+    </div>
+  </div>
+
+  <script>
+    let isRolling = false;
+
+    function rollDice() {
+      if (isRolling) return;
+
+      const dice = document.getElementById('dice');
+      const randomNumber = Math.floor(Math.random() * 3) + 1;
+
+      isRolling = true;
+
+      dice.animate([
+        { transform: `rotateX(0deg) rotateY(0deg)` },
+        { transform: `rotateX(${Math.random() * 720}deg) rotateY(${Math.random() * 720}deg)` }
+      ], {
+        duration: 1800,
+        easing: 'ease-in-out',
+        fill: 'both',
+      });
+
+      // Show the corresponding number after the animation
+      setTimeout(() => {
+        // Rotate the dice back to its original position
+        dice.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        // Set the result on the visible side
+        document.getElementById(`side${randomNumber}`).innerText = randomNumber;
+        isRolling = false;
+        alert(document.getElementById(`side${randomNumber}`).innerText);
+      }, 2000);
+
+
+    }
+
+    document.getElementById('dice').addEventListener('click', rollDice);
+  </script>
+</body>
+
+</html>

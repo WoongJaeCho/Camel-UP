@@ -27,7 +27,7 @@ class main {
       if (this.dice.idx == 0) {
         setTimeout(() => {
           this.setround();
-        }, 2000);
+        }, 3000);
       }
     })
     console.log('turn = ', this.turn);
@@ -37,32 +37,34 @@ class main {
 
   diceOn() {
     this.isbutton = false;
-    this.canvas.classList.remove('on');
+    // this.canvas.classList.remove('on');
     setTimeout(() => {
-      this.canvas.classList.add('on');
+      // this.canvas.classList.add('on');
       this.isbutton = true;
       // }, 20);
     }, 2000);
     this.dice.throwDice();
-
+    
     this.colorIdx = this.dice.rdColor;
     this.dot = this.dice.rdDot;
     this.color = this.colorList[this.colorIdx];
     console.log('color =', this.colorList[this.colorIdx]);
     console.log('dot =', this.dot);
     this.diceCoin();
-    this.removeClass();
-    this.moveAndroid(this.colorIdx, this.dot, this.color);
-    this.addClass();
-    this.changeTurn();
-    if (this.iswinner) {
-      this.isbutton = false;
-      setTimeout(() => {
-        alert("게임 종료");
-        this.setround();
-        this.isbutton = false;
-      }, 1000);
-    }
+    setTimeout(() => {
+      this.removeClass();
+      this.moveAndroid(this.colorIdx, this.dot, this.color);
+      this.addClass();
+      this.changeTurn();
+      if (this.iswinner) {
+        setTimeout(() => {
+          this.setround();
+          alert("게임 종료");
+          this.isbutton = false;
+        }, 1500);
+      }
+    }, 1000);
+
   }
 
   diceCoin() {

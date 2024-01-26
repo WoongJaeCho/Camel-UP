@@ -202,7 +202,7 @@ class main {
     let pTag = [...document.querySelectorAll('p')];
     this.endRound();
     this.calCoin();
-    // this.setCard(pTag);
+    this.setCard(pTag);
   }
 
   setCard(pTag) {

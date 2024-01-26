@@ -41,8 +41,8 @@ class main {
     setTimeout(() => {
       this.canvas.classList.add('on');
       this.isbutton = true;
-    }, 20);
-    // }, 2000);
+      // }, 20);
+    }, 2000);
     this.dice.throwDice();
 
     this.colorIdx = this.dice.rdColor;

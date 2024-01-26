@@ -59,6 +59,8 @@ class main {
       this.isbutton = false;
       setTimeout(() => {
         alert("게임 종료");
+        this.setround();
+        this.isbutton = false;
       }, 1000);
     }
   }
@@ -147,27 +149,27 @@ class main {
     this.items.forEach(item => item.addEventListener('dragover', e => e.preventDefault()))
 
     this.items.forEach(item => {
-      // if (item.parentNode.classList.contains('on')) {
       item.addEventListener('drop', e => {
-        let card = [...cards.querySelectorAll('.card')];
-        let cd = card.find(cd => cd.classList.contains("drag"));
-        let color = cd && cd.getAttribute('data-color');
-        let pTag = cd.querySelector('p');
+        if (item.parentNode.classList.contains('on')) {
+          let card = [...cards.querySelectorAll('.card')];
+          let cd = card.find(cd => cd.classList.contains("drag"));
+          let color = cd && cd.getAttribute('data-color');
+          let pTag = cd.querySelector('p');
 
-        const copyCard = cd.cloneNode(true);
-        copyCard.classList.remove('drag');
-        e.currentTarget.appendChild(copyCard);
-        let point = this.android.setPoint(color);
-        if (point > 0) {
-          pTag.textContent = point;
-        } else {
-          pTag.textContent = '';
-          pTag.parentNode.setAttribute('draggable', 'false');
+          const copyCard = cd.cloneNode(true);
+          copyCard.classList.remove('drag');
+          e.currentTarget.appendChild(copyCard);
+          let point = this.android.setPoint(color);
+          if (point > 0) {
+            pTag.textContent = point;
+          } else {
+            pTag.textContent = '';
+            pTag.parentNode.setAttribute('draggable', 'false');
+          }
+          this.changeTurn();
         }
-        this.changeTurn();
       })
     })
-    // })
 
 
   }

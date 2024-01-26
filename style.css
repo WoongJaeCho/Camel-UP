@@ -206,6 +206,7 @@ button:hover{
   width: 200px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .player{
@@ -259,4 +260,17 @@ button:hover{
   flex: 2;
   display: flex;
   flex-wrap: wrap;
+}
+.player .card{
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  width: 60px;
+  height: 100px;
+  margin: 0 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: gray;
+  /* justify-content: space-evenly; */
+  z-index: 1;
 }

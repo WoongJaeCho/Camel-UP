@@ -17,16 +17,17 @@ class main {
     this.isbutton = true;
     this.iswinner = false;
     this.turn = this.$player[0];
+    this.items = this.turn.querySelector('.items');
+    this.cardDrag();
     this.$btn.addEventListener('click', () => {
       if (this.isbutton) {
         this.diceOn();
       }
     })
-    this.cardDrag(this.turn);
-    console.log(this.turn);
+    console.log('turn = ',this.turn);
   }
-
-
+  // init(){}
+  
   diceOn() {
     this.isbutton = false;
     this.canvas.classList.remove('on');
@@ -35,7 +36,7 @@ class main {
       this.isbutton = true;
     }, 2000);
     this.dice.throwDice();
-
+    
     this.colorIdx = this.dice.rdColor;
     this.dot = this.dice.rdDot;
     this.color = this.colorList[this.colorIdx];
@@ -52,14 +53,14 @@ class main {
       }, 1000);
     }
   }
-
+  
   moveAndroid(colorIdx, dot) {
     let getPosition = this.android.getPosition(colorIdx);
     let setPosition = this.android.setPosition(colorIdx, dot);
     if (setPosition == 16) {
       this.iswinner = true;
     }
-
+    
     if (!getPosition) {
       this.firstmove(colorIdx, dot);
       return;
@@ -68,21 +69,21 @@ class main {
       return;
     }
   }
-
+  
   firstmove(colorIdx, dot) {
     this.$boxes.filter(box => {
       if (box.getAttribute('data-id') == dot) {
         box.innerHTML +=
-          `<i class="fa fa-android" data-color="${this.colorList[colorIdx]}"></i>`
+        `<i class="fa fa-android" data-color="${this.colorList[colorIdx]}"></i>`
       }
     })
   }
-
+  
   nextMove(getPosition, setPosition) {
     let icon = null;
     let iconIdx = null;
     let iconArr = [];
-
+    
     this.$boxes.filter(box => {
       if (box.getAttribute('data-id') == getPosition) {
         icon = box.querySelector(`i[data-color ="${this.color}"]`);
@@ -96,7 +97,7 @@ class main {
       }
     })
   }
-
+  
   moveChild(box, iconIdx, iconArr, setPosition) {
     for (let i = iconIdx; i < iconArr.length; i += 1) {
       let icon = iconArr[i];
@@ -106,7 +107,7 @@ class main {
       box.appendChild(icon);
     }
   }
-
+  
   changeTurn() {
     // let pList = ['p1', 'p2', 'p3', 'p4'];
     let idx = this.$player.findIndex(p => p.classList.contains('on'));
@@ -114,24 +115,34 @@ class main {
     if (idx == 4) idx = 0;
     this.turn = this.$player[idx];
     this.$player[idx].classList.add('on');
+    this.items = this.turn.querySelector('.items');
   }
-
-  cardDrag(turn) {
+  
+  cardDrag() {
+    let color = null;
     let cards = document.querySelector('.cards');
-    console.log(cards);
     cards.addEventListener('dragstart', e => {
-      console.log(e);
       e.target.classList.add('drag');
-    })
+      let cd = card.find(cd=> cd.classList.contains("drag"));
+      // color = e.target.getAttribute('data-color');
+      color = cd.getAttribute('data-color');
+      console.log(color);
+    });
     cards.addEventListener('dragend', e => {
       e.target.classList.remove('drag');
+    }); 
+    console.log(color);
+    this.items.addEventListener('dragover', e => e.preventDefault())
+    let card = [...cards.querySelectorAll('.card')];
+    this.items.addEventListener('drop', e => {
+      console.log(color);
+      let cd = card.find(cd=> cd.classList.contains("drag"));
+      const copyCard = cd.cloneNode(true);
+      e.target.before(copyCard);
+      cd.innerHTML = `<i class="fa fa-android" data-color="${color}"></i><p>3</p>`;
+      // e.target.appendChild(cd);
+      this.changeTurn();
     })
-
-    console.log(turn);
-    turn.addEventListener('dragover', e => {
-      e.
-    })
-
   }
 
   removeClass() {

@@ -257,4 +257,6 @@ button:hover{
 .items{
   /* border: 1px solid blue; */
   flex: 2;
+  display: flex;
+  flex-wrap: wrap;
 }

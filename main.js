@@ -24,6 +24,11 @@ class main {
       if (this.isbutton) {
         this.diceOn();
       }
+      if (this.dice.idx == 0) {
+        setTimeout(() => {
+          this.setround();
+        }, 2000);
+      }
     })
     console.log('turn = ', this.turn);
   }
@@ -139,8 +144,8 @@ class main {
         let card = [...cards.querySelectorAll('.card')];
         let cd = card.find(cd => cd.classList.contains("drag"));
         let color = cd && cd.getAttribute('data-color');
-        console.log(color);
         let pTag = cd.querySelector('p');
+
         const copyCard = cd.cloneNode(true);
         copyCard.classList.remove('drag');
         e.currentTarget.appendChild(copyCard);
@@ -182,6 +187,17 @@ class main {
       else if (cnt == 5) this.$boxes[i].classList.add('five');
     }
   }
+  setround() {
+    this.android.clearPoint();
+    this.items = [...document.querySelectorAll('.items')];
+    let pTag = [...document.querySelectorAll('p')];
+    this.items.forEach(e => e.innerHTML = '');
+    pTag.forEach(e => {
+      e.innerHTML = '5'
+      e.parentNode.setAttribute('draggable', 'true');
+    });
+  }
+
 }
 
 new main();

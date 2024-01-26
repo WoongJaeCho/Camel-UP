@@ -50,4 +50,8 @@ export default class Android {
     })
     return point.point;
   }
+
+  clearPoint() {
+    this.colorArr.forEach(e => e.point = 5);
+  }
 }

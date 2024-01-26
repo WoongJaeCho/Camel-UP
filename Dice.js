@@ -36,6 +36,9 @@ export default class Dice {
       // console.log(this.diceNum);
     }
   }
+  getIdx() {
+    return this.idx;
+  }
   sameNum(rdNum) {
     return this.diceNum.some(n => n == rdNum);
   }

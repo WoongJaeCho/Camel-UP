@@ -8,10 +8,23 @@ body{
   width: 100vw;
   background-image: url(./IMG/background.jpg);
   background-size: cover;
-}
-.container{
 
+   /* 글자 드래그 방지 - 구글 참조 */
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  }
+  img {
+  /* 이미지 드래그 방지 - 구글 참조 */
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  /* user-drag: none; */
 }
+.container{}
+
 header{
   background-color: #fff;
   height: 30px;
@@ -90,35 +103,37 @@ main{
   display: flex;
   flex-direction: column-reverse;
 }
-.box.one i{
-  /* flex: 1; */
+.box.one img{
   margin: auto auto 0 auto;
-  font-size: 3em;
+  height: 80px;
 }
-.box.two i{
-  flex: 1;
-  /* border: 1px solid; */
-  margin: 0 auto;
-  font-size: 3em;
-}
-.box.three i{
+.box.two img{
   flex: 1;
   margin: 0 auto;
-  font-size: 2em;
+  height: 80px;
 }
-.box.four i{
+.box.three img{
+  flex: 1;
   margin: 0 auto;
-  font-size: 1.6em;
+  height: 50px;
 }
-.box.five i{
+.box.four img{
+  flex: 1;
   margin: 0 auto;
-  font-size: 1.3em;
+  height: 30px;
+}
+.box.five img{
+  flex: 1;
+  margin: 0 auto;
+  height: 20px;
 }
 .box.hidden{
   opacity: 0;
 }
 .cards{
+  /* border: 1px solid pink; */
   display: flex;
+  flex-wrap: wrap;
   /* flex-direction: column; */
   position: absolute;
   top: 180px;
@@ -132,46 +147,46 @@ main{
   margin: 0 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: gray;
   /* justify-content: space-evenly; */
+  background-color: gray;
   z-index: 1;
-}
-.card i{
-  flex: 1;
-  font-size: 3em;
-  text-align: center;
 }
 .card img{
   flex: 1;
-  width: 50px;
+  width: 70px;
   margin: auto;
   /* border: 1px solid blue; */
-  font-size: 2em;
-  text-align: center;
 }
-i[data-color="yellow"]{
-  color: yellow;
-}
-i[data-color="green"]{
-  color: green;
-}
-i[data-color="blue"]{
+img[data-color="blue"]{
+  margin: 7px auto;
   color: blue;
 }
-i[data-color="red"]{
+img[data-color="green"]{
+  margin: 7px auto;
+  color: green;
+}
+img[data-color="red"]{
+  margin: 7px auto;
   color: red;
 }
-i[data-color="white"]{
+img[data-color="yellow"]{
+  margin: 7px auto;
+  color: yellow;
+}
+img[data-color="white"]{
+  margin: 7px auto;
   color: white;
 }
 .card p{
   flex: 1;
   font-size: 2em;
   text-align: center;
-  margin: 0;
-  /* justify-content: center; */
-  /* align-items: center; */
+  padding: auto;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
 }
 .card:hover{
   background-color: lightgray;
@@ -275,6 +290,7 @@ button:hover{
   flex-direction: column;
   justify-content: space-between;
   background-color: gray;
-  /* justify-content: space-evenly; */
-  z-index: 1;
+}
+.player .card img{
+  width: 50px;
 }

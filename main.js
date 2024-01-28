@@ -92,7 +92,8 @@ class main {
     this.$boxes.filter(box => {
       if (box.getAttribute('data-id') == dot) {
         box.innerHTML +=
-          `<i class="fa fa-android" data-color="${this.colorList[colorIdx]}"></i>`
+        `<img src="./IMG/${this.colorList[colorIdx]}.png" alt="${this.colorList[colorIdx]}" data-color="${this.colorList[colorIdx]}">`
+          // `<i class="fa fa-android" data-color="${this.colorList[colorIdx]}"></i>`
       }
     })
   }
@@ -104,8 +105,8 @@ class main {
 
     this.$boxes.filter(box => {
       if (box.getAttribute('data-id') == getPosition) {
-        icon = box.querySelector(`i[data-color ="${this.color}"]`);
-        iconArr = [...box.querySelectorAll('i')];
+        icon = box.querySelector(`img[data-color ="${this.color}"]`);
+        iconArr = [...box.querySelectorAll('img')];
         iconIdx = iconArr.findIndex(i => i == icon);
       }
     })
@@ -160,6 +161,7 @@ class main {
 
           const copyCard = cd.cloneNode(true);
           copyCard.classList.remove('drag');
+          copyCard.setAttribute('draggable', 'false');
           e.currentTarget.appendChild(copyCard);
           let point = this.android.setPoint(color);
           if (point > 0) {

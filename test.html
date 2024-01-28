@@ -13,11 +13,11 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #f0f0f0;
+      /* background-color: #f0f0f0; */
     }
 
     .scene {
-      perspective: 600px;
+      perspective: 800px;
     }
 
     .dice {
@@ -42,31 +42,39 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
       transform-origin: center center;
       backface-visibility: hidden;
+      border-radius: 10px;
     }
 
     #side1 {
       transform: rotateX(90deg) translateZ(50px);
+      background-color: blue;
     }
-
+    
     #side2 {
       transform: rotateX(-90deg) translateZ(50px);
+      background-color: green;
     }
-
+    
     #side3 {
       transform: rotateY(180deg) translateZ(50px);
+      background-color: red;
     }
-
+    
     #side4 {
       transform: rotateY(0deg) translateZ(50px);
+      background-color: yellow;
     }
-
+    
     #side5 {
       transform: rotateY(-90deg) translateZ(50px);
+      background-color: white;
     }
-
+    
     #side6 {
       transform: rotateY(90deg) translateZ(50px);
+      background-color: gray;
     }
+    
   </style>
 </head>
 

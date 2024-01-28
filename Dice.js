@@ -47,7 +47,7 @@ export default class Dice {
   throwDice() {
     // console.log(this.diceNum);
     this.rdDot = parseInt(Math.random() * 3) + 1;
-    // this.rdDot = parseInt(Math.random()) + 3;
+    // this.rdDot = parseInt(Math.random()) + 1;
     this.rdColor = this.diceNum[this.idx];
     this.draw(this.dice, this.rdColor);
     this.drawDot(this.dot, this.rdDot);

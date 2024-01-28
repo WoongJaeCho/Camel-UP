@@ -1,5 +1,5 @@
 import Dice from './Dice.js';
-import Android from './android.js';
+import Camel from './Camel.js';
 import Player from './Player.js';
 
 class main {
@@ -9,7 +9,7 @@ class main {
     this.$player = [...document.querySelectorAll('.player')];
     this.colorList = ['blue', 'green', 'red', 'yellow', 'white'];
     this.dice = new Dice();
-    this.android = new Android();
+    this.camel = new Camel();
     this.player = new Player();
     this.color = null;
     this.dot = null;
@@ -19,14 +19,18 @@ class main {
     this.turn = this.$player[0];
     this.idx = 0;
     this.items = [...this.turn.querySelectorAll('.items')];
+    this.randomChar();
     this.cardDrag();
     this.$btn.addEventListener('click', () => {
       if (this.isbutton) {
         this.diceOn();
       }
-      if (this.dice.idx == 0) {
+      // 주사위 5번 던지면 3s 이후 라운드 계산 및 초기화
+      if (this.dice.idx == 0 && !this.isbutton) {
+        this.$btn.classList.add('off');
         setTimeout(() => {
           this.setround();
+          this.$btn.classList.remove('off');
         }, 3000);
       }
     })
@@ -34,12 +38,19 @@ class main {
     this.calCoin();
   }
   // init(){}
-
+  randomChar(){
+    let charArr = this.player.charNum; 
+    let face = [...document.querySelectorAll('.face')];
+    let idx = 0;
+    face.forEach(char=>{
+      char.innerHTML=`<img src="./IMG/palyer${charArr[idx]}.jpg" alt="player${charArr[idx++]}">`
+    })
+    
+  }
   diceOn() {
     this.isbutton = false;
-    // this.canvas.classList.remove('on');
+    // 주사위 버튼 누르면 2.5초 이후 클릭 가능
     setTimeout(() => {
-      // this.canvas.classList.add('on');
       this.isbutton = true;
       // }, 20);
     }, 2000);
@@ -53,15 +64,18 @@ class main {
     this.diceCoin();
     setTimeout(() => {
       this.removeClass();
-      this.moveAndroid(this.colorIdx, this.dot, this.color);
+      this.movecamel(this.colorIdx, this.dot, this.color);
       this.addClass();
       this.changeTurn();
       if (this.iswinner) {
         setTimeout(() => {
+          this.$btn.classList.add('off');
           this.setround();
+          this.finishTurn();
           alert("게임 종료");
+          this.showWinner();
           this.isbutton = false;
-        }, 1500);
+        }, 1600);
       }
     }, 1000);
 
@@ -72,9 +86,9 @@ class main {
     items.innerHTML +=
       `<div class="card" data-color="coin"><img src="./IMG/coin.png" alt="coin"><p>1</p></div>`
   }
-  moveAndroid(colorIdx, dot) {
-    let getPosition = this.android.getPosition(colorIdx);
-    let setPosition = this.android.setPosition(colorIdx, dot);
+  movecamel(colorIdx, dot) {
+    let getPosition = this.camel.getPosition(colorIdx);
+    let setPosition = this.camel.setPosition(colorIdx, dot);
     if (setPosition == 16) {
       this.iswinner = true;
     }
@@ -93,7 +107,7 @@ class main {
       if (box.getAttribute('data-id') == dot) {
         box.innerHTML +=
         `<img src="./IMG/${this.colorList[colorIdx]}.png" alt="${this.colorList[colorIdx]}" data-color="${this.colorList[colorIdx]}">`
-          // `<i class="fa fa-android" data-color="${this.colorList[colorIdx]}"></i>`
+          // `<i class="fa fa-camel" data-color="${this.colorList[colorIdx]}"></i>`
       }
     })
   }
@@ -122,7 +136,7 @@ class main {
       let icon = iconArr[i];
       let color = icon.getAttribute('data-color');
       let colorIdx = this.colorList.findIndex(idx => idx == color);
-      this.android.colorArr[colorIdx].position = setPosition;
+      this.camel.colorArr[colorIdx].position = setPosition;
       box.appendChild(icon);
     }
   }
@@ -135,6 +149,10 @@ class main {
     this.turn = this.$player[this.idx];
     this.$player[this.idx].classList.add('on');
     this.items = [...this.turn.querySelectorAll('.items')];
+  }
+  finishTurn(){
+    this.idx = this.$player.findIndex(p => p.classList.contains('on'));
+    this.$player[this.idx].classList.remove('on');
   }
 
   cardDrag() {
@@ -163,7 +181,7 @@ class main {
           copyCard.classList.remove('drag');
           copyCard.setAttribute('draggable', 'false');
           e.currentTarget.appendChild(copyCard);
-          let point = this.android.setPoint(color);
+          let point = this.camel.setPoint(color);
           if (point > 0) {
             pTag.textContent = point;
           } else {
@@ -203,7 +221,7 @@ class main {
   }
 
   setround() {
-    this.android.clearPoint();
+    this.camel.clearPoint();
     this.items = [...document.querySelectorAll('.items')];
     let pTag = [...document.querySelectorAll('p')];
     this.endRound();
@@ -220,7 +238,7 @@ class main {
   }
 
   endRound() {
-    let firstBox = this.android.getFirst();
+    let firstBox = this.camel.getFirst();
     let box = this.$boxes.find(box => box.getAttribute('data-id') == firstBox);
     // box는 1등 말이 있는 position의 박스 2등 3등... 있을 수 있다.
     let firstColor = box.lastChild.getAttribute('data-color');
@@ -250,7 +268,7 @@ class main {
             this.player.calculateCoin(playerIdx, 2);
           }
         } else {
-          let secondBox = this.android.secondAndroid(firstBox);
+          let secondBox = this.camel.secondcamel(firstBox);
           console.log('1', secondBox);
           let box = this.$boxes.find(box => box.getAttribute('data-id') == secondBox);
           console.log('2', box);
@@ -276,6 +294,21 @@ class main {
     })
   }
 
+  showWinner(){
+    let winArr = [...this.player.getWinner()];
+    console.log('0',winArr);
+    winArr.forEach(winNum=>{
+      console.log('1',winNum);
+    this.$player.forEach(player => {
+        if(player.getAttribute('data-name') == winNum){
+          console.log('2',player);
+          let items = player.querySelector('.items');
+          console.log('3',items);
+          items.innerHTML+=`<img id="trophy" src="./IMG/trophy.gif" alt="trophy">`;
+        }
+      })
+    })
+  }
 }
 
 new main();

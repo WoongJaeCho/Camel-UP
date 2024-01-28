@@ -1,4 +1,4 @@
-export default class Android {
+export default class Camel {
   constructor() {
     this.colorArr = [{
         color: 'blue',
@@ -33,7 +33,7 @@ export default class Android {
   }
   setPosition(colorIdx, pos) {
     let position = this.colorArr[colorIdx].position += pos;
-    if (position >= 16) position = 16;
+    if (position > 16) position = 16;
     console.log('setposition =', position);
     return position;
   }
@@ -63,7 +63,7 @@ export default class Android {
     })
     return maxPos;
   }
-  secondAndroid(maxPos) {
+  secondcamel(maxPos) {
     let secondPos = 0;
     let pos = this.colorArr.forEach(Arr => {
       if (Arr.position == maxPos) {} else if (Arr.position > secondPos) {

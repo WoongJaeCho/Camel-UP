@@ -58,14 +58,14 @@ export default class Dice {
     setTimeout(() => {
       this.drawsmallDice(this.rdColor,this.rdDot)
       this.ctx.clearRect(0,this.canvas.height/2,this.canvas.width,this.canvas.height);
-    }, 2000);
+    }, 1000);
     
     if (this.idx == 5) {
       this.init();
       this.idx = 0;
       setTimeout(() => {
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
-      }, 3000);
+      }, 2000);
     }
   }
   

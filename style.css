@@ -200,6 +200,10 @@ button{
   top: 560px;
   left: 480px;
   z-index: 1;
+  visibility: visible;
+}
+button.off{
+  visibility: hidden;
 }
 button:hover{
   background-color: pink;
@@ -279,6 +283,10 @@ button:hover{
   flex: 2;
   display: flex;
   flex-wrap: wrap;
+}
+#trophy{
+  z-index: 2;
+  transform: translateX(-33px);
 }
 .player .card{
   /* border: 1px solid black; */

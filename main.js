@@ -26,7 +26,7 @@ class main {
         this.diceOn();
       }
       // 주사위 5번 던지면 3s 이후 라운드 계산 및 초기화
-      if (this.dice.idx == 0 && !this.isbutton) {
+      if (this.dice.idx == 0 && !this.iswinner) {
         this.$btn.classList.add('off');
         setTimeout(() => {
           this.setround();
@@ -69,18 +69,20 @@ class main {
       this.changeTurn();
       if (this.iswinner) {
         setTimeout(() => {
-          this.$btn.classList.add('off');
-          this.setround();
-          this.finishTurn();
-          alert("게임 종료");
-          this.showWinner();
-          this.isbutton = false;
+          this.finishGame();
         }, 1600);
       }
     }, 1000);
-
+    
   }
-
+  finishGame(){
+    this.setround();
+    this.finishTurn();
+    alert("게임 종료");
+    this.isbutton = false;
+    this.$btn.classList.add('off');
+    this.showWinner();
+  }
   diceCoin() {
     let items = this.turn.querySelector('.items');
     items.innerHTML +=

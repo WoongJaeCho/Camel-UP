@@ -4,7 +4,7 @@ https://woongjaecho.github.io/Camel-UP/
 ![image](https://github.com/WoongJaeCho/Camel-UP/assets/153791208/cd0ad765-5127-46df-b579-fa04469c7347)
 
 
-평소 즐겨하는 보드게임 중 하나인 카멜업을 자바스크립트로 구현 하겠다.
+평소 즐겨하는 보드게임 중 하나인 카멜업을 웹 페이지로 구현 하겠다.
 
 1. 게임의 개요
   - 낙타 경마를 소재로 한 게임이다.

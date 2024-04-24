@@ -1,6 +1,7 @@
 # Camel UP
 
 https://woongjaecho.github.io/Camel-UP/
+<img align="center" src="https://github.com/WoongJaeCho/Camel-UP/blob/main/upload/시연영상.gif?raw=true" width="300"/>
 ![image](https://github.com/WoongJaeCho/Camel-UP/assets/153791208/cd0ad765-5127-46df-b579-fa04469c7347)
 
 

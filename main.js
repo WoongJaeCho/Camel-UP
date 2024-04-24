@@ -37,15 +37,16 @@ class main {
     console.log('turn = ', this.turn);
     this.calCoin();
   }
+
   // init(){}
-  randomChar(){
-    let charArr = this.player.charNum; 
+  randomChar() {
+    let charArr = this.player.charNum;
     let face = [...document.querySelectorAll('.face')];
     let idx = 0;
-    face.forEach(char=>{
-      char.innerHTML=`<img src="./IMG/palyer${charArr[idx]}.jpg" alt="player${charArr[idx++]}">`
+    face.forEach(char => {
+      char.innerHTML = `<img src="./IMG/palyer${charArr[idx]}.jpg" alt="player${charArr[idx++]}">`
     })
-    
+
   }
   diceOn() {
     this.isbutton = false;
@@ -55,7 +56,7 @@ class main {
       // }, 20);
     }, 2000);
     this.dice.throwDice();
-    
+
     this.colorIdx = this.dice.rdColor;
     this.dot = this.dice.rdDot;
     this.color = this.colorList[this.colorIdx];
@@ -73,9 +74,9 @@ class main {
         }, 1600);
       }
     }, 1000);
-    
+
   }
-  finishGame(){
+  finishGame() {
     this.setround();
     this.finishTurn();
     alert("게임 종료");
@@ -93,6 +94,7 @@ class main {
     let setPosition = this.camel.setPosition(colorIdx, dot);
     if (setPosition == 16) {
       this.iswinner = true;
+      this.isbutton = false;
     }
 
     if (!getPosition) {
@@ -108,8 +110,8 @@ class main {
     this.$boxes.filter(box => {
       if (box.getAttribute('data-id') == dot) {
         box.innerHTML +=
-        `<img src="./IMG/${this.colorList[colorIdx]}.png" alt="${this.colorList[colorIdx]}" data-color="${this.colorList[colorIdx]}">`
-          // `<i class="fa fa-camel" data-color="${this.colorList[colorIdx]}"></i>`
+          `<img src="./IMG/${this.colorList[colorIdx]}.png" alt="${this.colorList[colorIdx]}" data-color="${this.colorList[colorIdx]}">`
+        // `<i class="fa fa-camel" data-color="${this.colorList[colorIdx]}"></i>`
       }
     })
   }
@@ -152,7 +154,8 @@ class main {
     this.$player[this.idx].classList.add('on');
     this.items = [...this.turn.querySelectorAll('.items')];
   }
-  finishTurn(){
+
+  finishTurn() {
     this.idx = this.$player.findIndex(p => p.classList.contains('on'));
     this.$player[this.idx].classList.remove('on');
   }
@@ -296,17 +299,17 @@ class main {
     })
   }
 
-  showWinner(){
+  showWinner() {
     let winArr = [...this.player.getWinner()];
-    console.log('0',winArr);
-    winArr.forEach(winNum=>{
-      console.log('1',winNum);
-    this.$player.forEach(player => {
-        if(player.getAttribute('data-name') == winNum){
-          console.log('2',player);
+    console.log('0', winArr);
+    winArr.forEach(winNum => {
+      console.log('1', winNum);
+      this.$player.forEach(player => {
+        if (player.getAttribute('data-name') == winNum) {
+          console.log('2', player);
           let items = player.querySelector('.items');
-          console.log('3',items);
-          items.innerHTML+=`<img id="trophy" src="./IMG/trophy.gif" alt="trophy">`;
+          console.log('3', items);
+          items.innerHTML += `<img id="trophy" src="./IMG/trophy.gif" alt="trophy">`;
         }
       })
     })

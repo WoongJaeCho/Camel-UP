@@ -1,8 +1,9 @@
 # Camel UP
 
-https://woongjaecho.github.io/Camel-UP/
-<img align="center" src="https://github.com/WoongJaeCho/Camel-UP/blob/main/upload/시연영상.gif?raw=true" width="300"/>
-![image](https://github.com/WoongJaeCho/Camel-UP/assets/153791208/cd0ad765-5127-46df-b579-fa04469c7347)
+https://woongjaecho.github.io/Camel-UP/ <br>
+<hr>
+<img align="center" src="https://github.com/WoongJaeCho/Camel-UP/blob/main/upload/시연영상.gif?raw=true" width="1000"/>
+<!-- ![image](https://github.com/WoongJaeCho/Camel-UP/assets/153791208/cd0ad765-5127-46df-b579-fa04469c7347) -->
 
 
 평소 즐겨하는 보드게임 중 하나인 카멜업을 웹 페이지로 구현 하겠다.
